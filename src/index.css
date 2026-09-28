@@ -1,0 +1,173 @@
+@import "tailwindcss";
+
+/* -------------------------------------------------------------
+   PHYSICAL PRINTING CSS STYLES FOR RECEIPT CONTAINER
+------------------------------------------------------------- */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 8mm 10mm;
+  }
+
+  /* Reset global viewport & backgrounds for physical printing */
+  html,
+  body {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    color: #0f172a !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 100% !important;
+    overflow: visible !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Hide app chrome, sidebars, headers, navs, action buttons */
+  header,
+  aside,
+  nav,
+  button,
+  .no-print,
+  [data-no-print] {
+    display: none !important;
+    visibility: hidden !important;
+  }
+
+  /* When printing specifically the receipt container:
+     Hide all other contents on the page while keeping the receipt container isolated */
+  body.printing-receipt {
+    visibility: hidden !important;
+    background: #ffffff !important;
+  }
+
+  /* Reset modal overlays, backdrop, and container hierarchy */
+  body.printing-receipt #root,
+  body.printing-receipt main,
+  body.printing-receipt .receipt-modal-backdrop,
+  body.printing-receipt .receipt-modal-dialog {
+    position: static !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+    inset: auto !important;
+    transform: none !important;
+  }
+
+  /* Isolate receipt container and all its children to be strictly visible */
+  body.printing-receipt #printable-receipt,
+  body.printing-receipt #printable-receipt * {
+    visibility: visible !important;
+  }
+
+  /* Physical A4 Print Styling for the Receipt Container */
+  body.printing-receipt #printable-receipt,
+  #printable-receipt {
+    display: block !important;
+    visibility: visible !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    max-width: 760px !important;
+    margin: 0 auto !important;
+    padding: 18px 24px !important;
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    color: #0f172a !important;
+    border: 2px solid #0f172a !important;
+    border-radius: 12px !important;
+    box-shadow: none !important;
+    box-sizing: border-box !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Ensure dynamically loaded logo and signature images render with crisp clarity */
+  #printable-receipt img {
+    visibility: visible !important;
+    display: inline-block !important;
+    max-width: 100% !important;
+    object-fit: contain !important;
+    image-rendering: -webkit-optimize-contrast !important;
+    image-rendering: crisp-edges !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Logo specifics in print */
+  #printable-receipt .receipt-logo-img {
+    max-height: 56px !important;
+    max-width: 180px !important;
+  }
+
+  /* Signature specifics in print */
+  #printable-receipt .receipt-signature-img {
+    max-height: 48px !important;
+    max-width: 160px !important;
+  }
+
+  /* Maintain tinted backgrounds on physical paper (slate, emerald, indigo) */
+  #printable-receipt .bg-slate-50 {
+    background-color: #f8fafc !important;
+    border: 1px solid #cbd5e1 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  #printable-receipt .bg-slate-100 {
+    background-color: #f1f5f9 !important;
+    border-color: #cbd5e1 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  #printable-receipt .bg-indigo-50 {
+    background-color: #eef2ff !important;
+    border-color: #c7d2fe !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  #printable-receipt .bg-emerald-50 {
+    background-color: #ecfdf5 !important;
+    border-color: #6ee7b7 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* High contrast colors for print legibility */
+  #printable-receipt .text-slate-900,
+  #printable-receipt .text-slate-800 {
+    color: #0f172a !important;
+  }
+
+  #printable-receipt .text-slate-500,
+  #printable-receipt .text-slate-600,
+  #printable-receipt .text-slate-400 {
+    color: #475569 !important;
+  }
+
+  #printable-receipt .text-indigo-700,
+  #printable-receipt .text-indigo-800 {
+    color: #3730a3 !important;
+  }
+
+  #printable-receipt .text-emerald-700,
+  #printable-receipt .text-emerald-800 {
+    color: #065f46 !important;
+  }
+}
